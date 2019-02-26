@@ -7,7 +7,7 @@ public class player : MonoBehaviour {
 
 
     public float vel;
-    public float maxSpeed = 5f;
+    public float run;
     public bool grouded;
     public float jumpPower = 6.5f;
 
@@ -21,6 +21,7 @@ public class player : MonoBehaviour {
 
         rb = gameObject.GetComponent<Rigidbody2D>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
+        run = vel + 3;
  
     }
 	
@@ -31,10 +32,19 @@ public class player : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
              rb.velocity = new Vector2(-vel, rb.velocity.y);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                rb.velocity = new Vector2(-run, rb.velocity.y);
+            }
         }
+        
         else if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector2(vel, rb.velocity.y);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                rb.velocity = new Vector2(run, rb.velocity.y);
+            }
         }
         else
         {
