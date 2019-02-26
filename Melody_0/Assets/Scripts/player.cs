@@ -8,22 +8,14 @@ public class player : MonoBehaviour {
 
     public float vel;
     public float maxSpeed = 5f;
-    public bool groudead;
+    public bool grouded;
     public float jumpPower = 6.5f;
 
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
-    private bool jump;
+    //private bool jump;
 
     // Use this for initialization
-
-    //void CollisionEnter2D(Collision2D colisión)
-    //{
-    //    if (colisión.gameObject.tag == "llave")
-    //    {
-    //        Destroy(colisión.gameObject);
-    //    }
-    //}
 
     void Start () {
 
@@ -49,10 +41,10 @@ public class player : MonoBehaviour {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && groudead)
+        /*if (Input.GetKeyDown(KeyCode.Space) && groudead)
         {
             jump = true;
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.S))
         {
@@ -63,8 +55,15 @@ public class player : MonoBehaviour {
             cc.enabled = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (grouded) {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                grouded = false;
+            }
+        }
+
 	}
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         if (jump)
         {
@@ -72,5 +71,13 @@ public class player : MonoBehaviour {
             jump = false;
         }
         Debug.Log(rb.velocity.x);
+    }*/
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        grouded = true;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        grouded = false;
     }
 }

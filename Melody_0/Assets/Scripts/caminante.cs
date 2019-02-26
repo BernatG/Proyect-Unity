@@ -5,10 +5,7 @@ using UnityEngine;
 public class caminante : MonoBehaviour {
 
     public float vel;
-    public bool cosa;
-    /// <summary>
-    // /////////////////////////////////////////////////////////
-    /// </summary>
+
     private Rigidbody2D rb;
 	// Use this for initialization
 	void Start () {
@@ -19,4 +16,23 @@ public class caminante : MonoBehaviour {
 	void Update () {
         rb.velocity = new Vector2(vel, 0);
 	}
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "limite")
+        {
+            vel *= (-1); 
+        }
+
+        if (collider.gameObject.tag == "player") {
+            Destroy(collider.gameObject);
+        }
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "player") {
+            Destroy(this.gameObject);
+        }
+    }
 }

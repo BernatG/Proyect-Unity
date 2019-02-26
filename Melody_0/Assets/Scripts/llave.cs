@@ -14,5 +14,11 @@ public class llave : MonoBehaviour {
 		
 	}
 
-    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "player")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
