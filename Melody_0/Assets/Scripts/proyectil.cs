@@ -2,22 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class disparador : MonoBehaviour {
+public class proyectil : MonoBehaviour {
 
     public float timeLimit;
+    public float vel;
+
+    private Rigidbody2D rb;
     private float time;
-    public GameObject projectile;
 	// Use this for initialization
 	void Start () {
-		
+        rb = gameObject.GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
+        rb.velocity = new Vector2(vel, 0);
+        
         time += Time.deltaTime;
         if (time >= timeLimit) {
-            Instantiate(projectile, gameObject.transform.position, gameObject.transform.localRotation);
+            Destroy(this.gameObject);
             time = 0;
         }
-    }
+	}
 }
