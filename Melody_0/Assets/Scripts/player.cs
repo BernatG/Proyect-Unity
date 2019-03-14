@@ -38,7 +38,7 @@ public class player : MonoBehaviour {
         if (Input.GetKey(KeyCode.A))
         {
             rb.velocity = new Vector2(-vel, rb.velocity.y);
-            rb.transform.localScale = new Vector3(3.3075f, rb.transform.localScale.y, rb.transform.localScale.z);
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -49,7 +49,7 @@ public class player : MonoBehaviour {
         else if (Input.GetKey(KeyCode.D))
         {
             rb.velocity = new Vector2(vel, rb.velocity.y);
-            rb.transform.localScale = new Vector3(-3.3075f, rb.transform.localScale.y, rb.transform.localScale.z);
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 rb.velocity = new Vector2(run, rb.velocity.y);
@@ -81,16 +81,13 @@ public class player : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.RightControl) /*&& shot == true*/) {
+        if (Input.GetKeyDown(KeyCode.RightControl) && shot == true) {
 
-            /*instantiatedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0), gameObject.transform);
-            if (rb.transform.localScale.x == -3.3075f) {
-                instantiatedProjectile.GetComponent<proyectil_jugador>().vel *= (-1); 
-                //instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = new Vector2(vel, 0);
-            }
-            //else
-                //instantiatedProjectile.GetComponent<Rigidbody2D>().velocity = new Vector2(-vel, 0);
-            */
+            instantiatedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0), gameObject.transform);
+            if (gameObject.GetComponent<SpriteRenderer>().flipX == true) {
+                instantiatedProjectile.GetComponent<proyectil_jugador>().vel *= (-1);
+            }               
+            
         }
 
 	}
