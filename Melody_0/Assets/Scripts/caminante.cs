@@ -25,7 +25,7 @@ public class caminante : MonoBehaviour {
         }
 
         if (collider.gameObject.tag == "player") {
-            Destroy(collider.gameObject);
+            //Destroy(collider.gameObject);
         }
 
     }

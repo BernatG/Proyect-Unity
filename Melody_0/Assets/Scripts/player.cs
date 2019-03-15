@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour {
 
 
-
+    public int life;
     public float vel;
     public float run;
     private bool grouded;
@@ -23,7 +24,7 @@ public class player : MonoBehaviour {
     // Use this for initialization
 
     void Start () {
-
+        life = 1;
         rb = gameObject.GetComponent<Rigidbody2D>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
         run = vel + 3;
@@ -90,12 +91,21 @@ public class player : MonoBehaviour {
             
         }
 
+        if (life <=0 || rb.position.y < (-5)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
 	}
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         grouded = true;
         jump2 = true;
+    }
+    private void OnTriggerEnter2D(Collider2D coll) {
+        if (coll.gameObject.tag == "enemigo") {
+            life--;
+        }        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
