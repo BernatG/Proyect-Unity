@@ -242,21 +242,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'D --> Andar derecha
-
-    A --> Andar izquierda
-
-    Shift + D --> Correr derecha
-
-    Shift +A --> Correr izquierda
-
-    Espacio --> Saltar
-
-    * Poderes:
-
-    Espacio + Espacio --> Doble Salto
-
-    Ctrl(derecha) --> Disparar'
+  m_Text: "D --> Andar a la derecha\nA --> Andar a la izquierda\nS --> Cambiar a la
+    l\xEDnea de abajo\nShift + D --> Correr a la derecha\nShift + A --> Correr a la
+    izquierda\nEspacio --> Saltar\n* Poderes:\nEspacio + Espacio --> Doble Salto\nCtrl(derecha)
+    --> Disparar"
 --- !u!222 &380345436
 CanvasRenderer:
   m_ObjectHideFlags: 0
