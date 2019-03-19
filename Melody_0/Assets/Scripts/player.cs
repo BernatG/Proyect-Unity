@@ -14,6 +14,7 @@ public class player : MonoBehaviour {
     private bool jump2;
     public float jumpPower = 6.5f;
     private bool shot;
+    private bool tieneLlave;
 
     private GameObject instantiatedProjectile;
     public GameObject projectile;
@@ -29,7 +30,8 @@ public class player : MonoBehaviour {
         cc = gameObject.GetComponent<CapsuleCollider2D>();
         run = vel + 3;
         shot = true;
-        doublejump = false;
+        doublejump = true;
+        tieneLlave = false;
     }
 	
     // Update is called once per frame
@@ -86,7 +88,7 @@ public class player : MonoBehaviour {
 
             instantiatedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0), gameObject.transform);
             if (gameObject.GetComponent<SpriteRenderer>().flipX == true) {
-                instantiatedProjectile.GetComponent<proyectil_jugador>().vel *= (-1);
+                instantiatedProjectile.GetComponent<proyectil_jugador>().vel *= (-2);
             }               
             
         }
@@ -96,6 +98,20 @@ public class player : MonoBehaviour {
         }
 
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "llave")
+        {
+            tieneLlave = true;
+            collision.gameObject.SetActive(false);
+        }
+        if (tieneLlave == true && collision.gameObject.tag == "puerta")
+        {
+            collision.gameObject.SetActive(false);
+        }
+
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {

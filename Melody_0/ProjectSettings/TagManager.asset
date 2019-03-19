@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - llave
+  - player
+  - limite
+  - enemigo
+  - puerta
+  - proyectil_jugador
   layers:
   - Default
   - TransparentFX
