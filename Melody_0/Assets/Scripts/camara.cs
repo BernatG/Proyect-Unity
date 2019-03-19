@@ -27,7 +27,7 @@ public class camara : MonoBehaviour
     {
         jugadorPosX = jugador.transform.position.x;
         jugadorPosY = jugador.transform.position.y;
-        gameObject.transform.position = new Vector3(jugadorPosX, jugadorPosY + 2.5f, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(jugadorPosX, jugadorPosY + 1.5f, gameObject.transform.position.z);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1)

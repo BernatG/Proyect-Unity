@@ -250,7 +250,13 @@ MonoBehaviour:
 
     Shift +A --> Correr izquierda
 
-    Espacio --> Saltar'
+    Espacio --> Saltar
+
+    * Poderes:
+
+    Espacio + Espacio --> Doble Salto
+
+    Ctrl(derecha) --> Disparar'
 --- !u!222 &380345436
 CanvasRenderer:
   m_ObjectHideFlags: 0

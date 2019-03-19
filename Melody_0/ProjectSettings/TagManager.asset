@@ -10,6 +10,10 @@ TagManager:
   - enemigo
   - puerta
   - proyectil_jugador
+  - habilidad_doble_salto
+  - habilidad_disparo
+  - suelo
+  - final
   layers:
   - Default
   - TransparentFX

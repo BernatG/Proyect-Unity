@@ -18,6 +18,7 @@ public class player : MonoBehaviour {
 
     private GameObject instantiatedProjectile;
     public GameObject projectile;
+    public Canvas final;
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
     //private bool jump;
@@ -28,9 +29,10 @@ public class player : MonoBehaviour {
         life = 1;
         rb = gameObject.GetComponent<Rigidbody2D>();
         cc = gameObject.GetComponent<CapsuleCollider2D>();
+        final.gameObject.SetActive(false);
         run = vel + 3;
-        shot = true;
-        doublejump = true;
+        shot = false;
+        doublejump = false;
         tieneLlave = false;
     }
 	
@@ -110,13 +112,31 @@ public class player : MonoBehaviour {
         {
             collision.gameObject.SetActive(false);
         }
+        if (collision.gameObject.tag == "habilidad_doble_salto")
+        {
+            doublejump = true;
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.tag == "habilidad_disparo")
+        {
+            shot = true;
+            collision.gameObject.SetActive(false);
+        }
+        if (collision.gameObject.tag == "final")
+        {
+            final.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
 
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        grouded = true;
-        jump2 = true;
+        if (collision.gameObject.tag == "suelo")
+        {
+            grouded = true;
+            jump2 = true;
+        }
     }
     private void OnTriggerEnter2D(Collider2D coll) {
         if (coll.gameObject.tag == "enemigo") {
@@ -125,6 +145,9 @@ public class player : MonoBehaviour {
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        grouded = false;
+        if (collision.gameObject.tag == "suelo")
+        {
+            grouded = false;
+        }
     }
 }
