@@ -1,33 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class camara : MonoBehaviour
 {
 
-    private Transform situacion;
-    private GameObject jugador;
-    private float jugadorPosX;
-    private float jugadorPosY;
+    private Transform posicionJugador;
+
+    public float velocidad = 0.125f;
+    public Vector3 distancia;
+    //private GameObject jugador;
+
+
+    //private float jugadorPosX;
+    //private float jugadorPosY;
     public Canvas canvas;
 
     // Use this for initialization
     void Start()
     {
-        jugador = GameObject.FindGameObjectWithTag("player");
+        posicionJugador = GameObject.FindGameObjectWithTag("player").transform;
         canvas.gameObject.SetActive(false);
-        Time.timeScale = 1;
-
-        //jugadorPosX = GameObject.FindGameObjectWithTag("player").GetComponent<Transform>().position.x;
-        //jugadorPosY = GameObject.FindGameObjectWithTag("player").GetComponent<Transform>().position.y;
+        //Time.timeScale = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         jugadorPosX = jugador.transform.position.x;
         jugadorPosY = jugador.transform.position.y;
         gameObject.transform.position = new Vector3(jugadorPosX, jugadorPosY + 1.5f, gameObject.transform.position.z);
+        */
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Time.timeScale == 1)
@@ -43,4 +45,15 @@ public class camara : MonoBehaviour
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        Vector3 posicionFinal = posicionJugador.position + distancia;
+        Vector3 posicionCercana = Vector3.Lerp(gameObject.transform.position, posicionFinal, velocidad);
+        transform.position = posicionCercana;
+
+        //transform.LookAt(posicionJugador);
+    }
+
+
 }
