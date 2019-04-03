@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class camara : MonoBehaviour
 {
 
@@ -7,8 +8,9 @@ public class camara : MonoBehaviour
 
     public float velocidad = 0.125f;
     public Vector3 distancia;
-    //private GameObject jugador;
+    private player Player;
 
+    //private GameObject jugador;
 
     //private float jugadorPosX;
     //private float jugadorPosY;
@@ -18,6 +20,7 @@ public class camara : MonoBehaviour
     void Start()
     {
         posicionJugador = GameObject.FindGameObjectWithTag("player").transform;
+        distancia.z = -1;
         canvas.gameObject.SetActive(false);
         //Time.timeScale = 1;
     }
@@ -25,12 +28,13 @@ public class camara : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+   
         /*
         jugadorPosX = jugador.transform.position.x;
         jugadorPosY = jugador.transform.position.y;
         gameObject.transform.position = new Vector3(jugadorPosX, jugadorPosY + 1.5f, gameObject.transform.position.z);
         */
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && Player.boolFinal == true)
         {
             if (Time.timeScale == 1)
             {

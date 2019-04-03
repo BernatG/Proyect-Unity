@@ -15,6 +15,7 @@ public class player : MonoBehaviour {
     public float jumpPower = 6.5f;
     private bool shot;
     private bool tieneLlave;
+    public bool boolFinal;
 
     private GameObject instantiatedProjectile;
     public GameObject projectile;
@@ -34,6 +35,7 @@ public class player : MonoBehaviour {
         shot = false;
         doublejump = false;
         tieneLlave = false;
+        boolFinal = false;
     }
 	
     // Update is called once per frame
@@ -126,6 +128,7 @@ public class player : MonoBehaviour {
         {
             final.gameObject.SetActive(true);
             Time.timeScale = 0;
+            boolFinal = true;
         }
 
     }
