@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class player : MonoBehaviour {
 
@@ -22,6 +23,7 @@ public class player : MonoBehaviour {
     public Canvas final;
     private Rigidbody2D rb;
     private CapsuleCollider2D cc;
+    public Text text_eliminar_enemigo;
     //private bool jump;
 
     // Use this for initialization
@@ -142,9 +144,24 @@ public class player : MonoBehaviour {
         }
     }
     private void OnTriggerEnter2D(Collider2D coll) {
-        if (coll.gameObject.tag == "enemigo") {
+        /*if (coll.gameObject.tag == "enemigo") {
             life--;
-        }        
+        }*/
+        if (coll.gameObject.tag == "trigger_mensaje_eliminar_caminante")
+        {
+            for (float i = 0; i < 1; i += 0.01f)
+            {
+                text_eliminar_enemigo.transform.localScale = new Vector3(i, i, 0);
+            }
+            
+        }
+    }
+    private void OnTriggerExit2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "trigger_mensaje_eliminar_caminante")
+        {
+            text_eliminar_enemigo.gameObject.SetActive(false);
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {

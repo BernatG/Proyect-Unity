@@ -14,6 +14,8 @@ TagManager:
   - habilidad_disparo
   - suelo
   - final
+  - mensaje_eliminar_caminante
+  - trigger_mensaje_eliminar_caminante
   layers:
   - Default
   - TransparentFX

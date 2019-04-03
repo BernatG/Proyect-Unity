@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\camara.cs" />
     <Compile Include="Assets\Scripts\caminante.cs" />
     <Compile Include="Assets\Scripts\disparador.cs" />
+    <Compile Include="Assets\Scripts\jefeFinal1.cs" />
     <Compile Include="Assets\Scripts\llave.cs" />
     <Compile Include="Assets\Scripts\menu.cs" />
     <Compile Include="Assets\Scripts\player.cs" />
@@ -72,16 +73,16 @@
     <Compile Include="Assets\Scripts\proyectil_jugador.cs" />
     <Compile Include="Assets\Scripts\puerta.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/bgrif/OneDrive/Escriptori/Proyect-Unity/Melody_0/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/bernat.grifol/Desktop/Proyect-Unity/Melody_0/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/bgrif/OneDrive/Escriptori/Proyect-Unity/Melody_0/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/bernat.grifol/Desktop/Proyect-Unity/Melody_0/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/bgrif/OneDrive/Escriptori/Proyect-Unity/Melody_0/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/bernat.grifol/Desktop/Proyect-Unity/Melody_0/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/bgrif/OneDrive/Escriptori/Proyect-Unity/Melody_0/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/bernat.grifol/Desktop/Proyect-Unity/Melody_0/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -279,10 +280,10 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Users/bgrif/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>C:/Users/bernat.grifol/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>C:/Users/bgrif/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/bernat.grifol/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
