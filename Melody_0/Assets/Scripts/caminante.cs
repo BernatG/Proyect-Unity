@@ -5,13 +5,16 @@ using UnityEngine;
 public class caminante : MonoBehaviour
 {
 
-    public float vel;
+    public float vel = 0;
+    public int daño = 0;
 
     private Rigidbody2D rb;
+    private GameObject player;
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("player");
     }
 
     // Update is called once per frame
@@ -33,12 +36,17 @@ public class caminante : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if (collider.gameObject.tag == "player")
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "player")
         {
-            Destroy(this.gameObject);
+            player.GetComponent<player>().life -= daño;
         }
     }
 }

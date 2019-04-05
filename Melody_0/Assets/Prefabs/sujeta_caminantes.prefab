@@ -37,10 +37,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4487310827762518}
   - component: {fileID: 212005789072446740}
-  - component: {fileID: 114983439267469654}
   - component: {fileID: 61664107093827824}
   - component: {fileID: 61218373711547534}
   - component: {fileID: 50060904519718808}
+  - component: {fileID: 114983439267469654}
   m_Layer: 0
   m_Name: caminante
   m_TagString: enemigo
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vel: 2
+  "da\xF1o": 1
 --- !u!212 &212005789072446740
 SpriteRenderer:
   m_ObjectHideFlags: 1

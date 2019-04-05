@@ -5,7 +5,10 @@ using UnityEngine;
 public class jefeFinal1 : MonoBehaviour {
 
     public float tiempoLimite = 1;
+    public float velocidad;
+    public int turnosNecesariosParaSalto = 0;
 
+    private int turnosParaSalto;
     private Transform transformJugador;
     private Rigidbody2D rb;
     private float posicionJugadorX;
@@ -15,15 +18,11 @@ public class jefeFinal1 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        turnosParaSalto = 0;
         transformJugador = GameObject.FindGameObjectWithTag("player").transform;
         rb = gameObject.GetComponent<Rigidbody2D>();
         buscando = true;
 	}
-
-    /*IEnumerator espera()
-    {
-        yield return new WaitForSeconds(4);
-    }*/
 
     // Update is called once per frame
     void Update () {
@@ -43,29 +42,39 @@ public class jefeFinal1 : MonoBehaviour {
 
         if (direccion == true && posicionJugadorX > gameObject.transform.position.x)
         {
-            rb.velocity = new Vector2(2, 0);
+            rb.velocity = new Vector2(velocidad, rb.velocity.y);
         }
         else if (direccion == false && posicionJugadorX < gameObject.transform.position.x)
         {
-            rb.velocity = new Vector2(-2, 0);
+            rb.velocity = new Vector2(-velocidad, rb.velocity.y);
         }
         else {
-            rb.velocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(0, rb.velocity.y);
 
             tiempo += Time.deltaTime;
 
             if (tiempo >= tiempoLimite) {
                 buscando = true;
                 tiempo = 0;
+                turnosParaSalto++;
             }
         }
-        //StartCoroutine(espera());
     }
     
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "player") {
+        if (collision.gameObject.tag == "player" && turnosParaSalto >= turnosNecesariosParaSalto)
+        {
+            rb.velocity = new Vector2 (rb.velocity.x, 10);
+            turnosParaSalto = 0;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "player")
+        {
             Destroy(collision.gameObject);
         }
     }
