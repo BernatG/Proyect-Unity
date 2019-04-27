@@ -11,18 +11,19 @@ public class player : MonoBehaviour {
     public float vel;
     public float run;
     private bool grouded;
-    private bool doublejump;
+    public bool doublejump;
     private bool jump2;
     public float jumpPower = 6.5f;
     private bool shot;
     private bool tieneLlave;
     public bool boolFinal;
+    public float posicionAbismo;
 
+    private GameObject plataformaIgnorada;
     private GameObject instantiatedProjectile;
     public GameObject projectile;
     public Canvas final;
     private Rigidbody2D rb;
-    private CapsuleCollider2D cc;
     public Text text_eliminar_enemigo;
     //private bool jump;
 
@@ -31,7 +32,6 @@ public class player : MonoBehaviour {
     void Start () {
         life = 1;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        cc = gameObject.GetComponent<CapsuleCollider2D>();
         final.gameObject.SetActive(false);
         run = vel + 3;
         shot = false;
@@ -43,7 +43,13 @@ public class player : MonoBehaviour {
     // Update is called once per frame
 	void Update ()
     {
-        //Debug.Log(rb.transform.localScale);
+        grouded = false;
+
+        if (transform.position.y - (GetComponent<CapsuleCollider2D>().bounds.size.y / 3) > plataformaIgnorada.transform.position.y)
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), false);
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
             rb.velocity = new Vector2(-vel, rb.velocity.y);
@@ -72,11 +78,8 @@ public class player : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.S))
         {
-            cc.enabled = false;
-        }
-        else
-        {
-            cc.enabled = true;
+            //cc.enabled = false;
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), true);
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -99,11 +102,10 @@ public class player : MonoBehaviour {
             
         }
 
-        if (life <=0 || rb.position.y < (-5)) {
+        if (life <=0 || rb.position.y < (posicionAbismo)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-	}
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -141,6 +143,7 @@ public class player : MonoBehaviour {
         {
             grouded = true;
             jump2 = true;
+            plataformaIgnorada = collision.gameObject;
         }
     }
     private void OnTriggerEnter2D(Collider2D coll) {
@@ -156,13 +159,36 @@ public class player : MonoBehaviour {
             
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "subPlataforma")
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.gameObject.transform.parent.gameObject.GetComponent<Collider2D>(), true);
+            plataformaIgnorada = collision.gameObject.transform.parent.gameObject;
+        }
+        else if (collision.gameObject.tag == "suelo")
+        {
+            grouded = true;
+            jump2 = true;
+            transform.parent = collision.gameObject.transform;
+
+        }
+    }
     private void OnTriggerExit2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "trigger_mensaje_eliminar_caminante")
         {
             text_eliminar_enemigo.gameObject.SetActive(false);
         }
+        else if (coll.gameObject.tag == "suelo")
+        {
+            grouded = true;
+            jump2 = true;
+            transform.parent = null;
+            rb.velocity = GetComponentInParent<Rigidbody2D>().velocity;
+        }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "suelo")
