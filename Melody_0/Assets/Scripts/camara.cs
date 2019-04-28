@@ -8,7 +8,7 @@ public class camara : MonoBehaviour
 
     public float velocidad = 0.125f;
     public Vector3 distancia;
-    private player Player;
+    public player Player;
 
     //private GameObject jugador;
 
@@ -34,7 +34,7 @@ public class camara : MonoBehaviour
         jugadorPosY = jugador.transform.position.y;
         gameObject.transform.position = new Vector3(jugadorPosX, jugadorPosY + 1.5f, gameObject.transform.position.z);
         */
-        if (Input.GetKeyDown(KeyCode.Escape) && Player.boolFinal == true)
+        if (Input.GetKeyDown(KeyCode.Escape) && Player.boolFinal == false)
         {
             if (Time.timeScale == 1)
             {
@@ -59,5 +59,9 @@ public class camara : MonoBehaviour
         //transform.LookAt(posicionJugador);
     }
 
-
+    public void Continuar()
+    {
+        Time.timeScale = 1;
+        canvas.gameObject.SetActive(false);
+    }
 }

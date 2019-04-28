@@ -286,6 +286,7 @@
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
     <Compile Include="Assets\Scripts\areaSensible.cs" />
+    <Compile Include="Assets\Scripts\ascensor.cs" />
     <Compile Include="Assets\Scripts\camara.cs" />
     <Compile Include="Assets\Scripts\caminante.cs" />
     <Compile Include="Assets\Scripts\disparador.cs" />
