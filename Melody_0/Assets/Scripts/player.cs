@@ -43,12 +43,16 @@ public class player : MonoBehaviour {
     // Update is called once per frame
 	void Update ()
     {
-        grouded = false;
+        //grouded = false;
 
-        if (transform.position.y - (GetComponent<CapsuleCollider2D>().bounds.size.y / 3) > plataformaIgnorada.transform.position.y)
+        if (plataformaIgnorada != null)
         {
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), false);
+            if (transform.position.y - (GetComponent<CapsuleCollider2D>().bounds.size.y / 3) > plataformaIgnorada.transform.position.y)
+            {
+                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), false);
+            }
         }
+
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -179,6 +183,10 @@ public class player : MonoBehaviour {
         if (coll.gameObject.tag == "trigger_mensaje_eliminar_caminante")
         {
             text_eliminar_enemigo.gameObject.SetActive(false);
+        }
+        else if (coll.gameObject.tag == "subPlataforma")
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), coll.gameObject.transform.parent.gameObject.GetComponent<Collider2D>(), false);
         }
         else if (coll.gameObject.tag == "suelo")
         {
