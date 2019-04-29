@@ -293,6 +293,7 @@
     <Compile Include="Assets\Scripts\jefeFinal1.cs" />
     <Compile Include="Assets\Scripts\llave.cs" />
     <Compile Include="Assets\Scripts\menu.cs" />
+    <Compile Include="Assets\Scripts\musica.cs" />
     <Compile Include="Assets\Scripts\player.cs" />
     <Compile Include="Assets\Scripts\proyectil.cs" />
     <Compile Include="Assets\Scripts\proyectil_jugador.cs" />

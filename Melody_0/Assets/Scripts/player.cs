@@ -35,7 +35,6 @@ public class player : MonoBehaviour {
         final.gameObject.SetActive(false);
         run = vel + 3;
         shot = false;
-        doublejump = false;
         tieneLlave = false;
         boolFinal = false;
     }
