@@ -6,18 +6,24 @@ using UnityEngine.UI;
 
 public class player : MonoBehaviour {
 
+    public float posicionAbismo;
 
     public int life;
+    private float maxLife;
+    private float fLife;
+
     public float vel;
-    public float run;
+    private float run;
+
     private bool grouded;
     public bool doublejump;
     private bool jump2;
     public float jumpPower = 6.5f;
+
     private bool shot;
     private bool tieneLlave;
     public bool boolFinal;
-    public float posicionAbismo;
+    public Image lifeImg;
 
     private GameObject plataformaIgnorada;
     private GameObject instantiatedProjectile;
@@ -30,7 +36,7 @@ public class player : MonoBehaviour {
     // Use this for initialization
 
     void Start () {
-        life = 1;
+        maxLife = life;
         rb = gameObject.GetComponent<Rigidbody2D>();
         final.gameObject.SetActive(false);
         run = vel + 3;
@@ -42,7 +48,8 @@ public class player : MonoBehaviour {
     // Update is called once per frame
 	void Update ()
     {
-        //grouded = false;
+        fLife = life;
+        lifeImg.fillAmount = fLife / maxLife;
 
         if (plataformaIgnorada != null)
         {
@@ -105,13 +112,18 @@ public class player : MonoBehaviour {
             
         }
 
-        if (life <=0 || rb.position.y < (posicionAbismo)) {
+        if (life <= 0 || rb.position.y < (posicionAbismo)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "enemigo")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //life--;
+        }
         if (collision.gameObject.tag == "llave")
         {
             tieneLlave = true;
@@ -150,9 +162,7 @@ public class player : MonoBehaviour {
         }
     }
     private void OnTriggerEnter2D(Collider2D coll) {
-        /*if (coll.gameObject.tag == "enemigo") {
-            life--;
-        }*/
+
         if (coll.gameObject.tag == "trigger_mensaje_eliminar_caminante")
         {
             for (float i = 0; i < 1; i += 0.01f)

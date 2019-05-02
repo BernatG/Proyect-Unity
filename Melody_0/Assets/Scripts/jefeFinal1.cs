@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class jefeFinal1 : MonoBehaviour {
 
@@ -15,17 +16,25 @@ public class jefeFinal1 : MonoBehaviour {
     private bool buscando;
     private bool direccion;
     private float tiempo = 0;
-
+    private bool grounded = true;
+    public int life = 1;
+    private SpriteRenderer renderer;
 	// Use this for initialization
 	void Start () {
         turnosParaSalto = 0;
         transformJugador = GameObject.FindGameObjectWithTag("player").transform;
         rb = gameObject.GetComponent<Rigidbody2D>();
         buscando = true;
+        renderer = GetComponent<SpriteRenderer>();
 	}
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
+
+        if (life <= 0)
+        {
+            SceneManager.LoadScene("Menu");
+        }
 
         if (buscando == true) {
             posicionJugadorX = transformJugador.position.x;
@@ -40,25 +49,33 @@ public class jefeFinal1 : MonoBehaviour {
             }
         }
 
-        if (direccion == true && posicionJugadorX > gameObject.transform.position.x)
+        if (grounded)
         {
-            rb.velocity = new Vector2(velocidad, rb.velocity.y);
-        }
-        else if (direccion == false && posicionJugadorX < gameObject.transform.position.x)
-        {
-            rb.velocity = new Vector2(-velocidad, rb.velocity.y);
-        }
-        else {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            if (direccion == true && posicionJugadorX > gameObject.transform.position.x)
+            {
+                rb.velocity = new Vector2(velocidad, rb.velocity.y);
+                renderer.flipX = true;
+            }
+            else if (direccion == false && posicionJugadorX < gameObject.transform.position.x)
+            {
+                rb.velocity = new Vector2(-velocidad, rb.velocity.y);
+                renderer.flipX = false;
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
 
-            tiempo += Time.deltaTime;
+                tiempo += Time.deltaTime;
 
-            if (tiempo >= tiempoLimite) {
-                buscando = true;
-                tiempo = 0;
-                turnosParaSalto++;
+                if (tiempo >= tiempoLimite)
+                {
+                    buscando = true;
+                    tiempo = 0;
+                    turnosParaSalto++;
+                }
             }
         }
+
     }
     
 
@@ -67,7 +84,8 @@ public class jefeFinal1 : MonoBehaviour {
         if (collision.gameObject.tag == "player" && turnosParaSalto >= turnosNecesariosParaSalto)
         {
             rb.velocity = new Vector2 (rb.velocity.x, 10);
-            turnosParaSalto = 0;
+            turnosParaSalto = -1;
+            grounded = false;
         }
     }
 
@@ -75,7 +93,11 @@ public class jefeFinal1 : MonoBehaviour {
     {
         if (collision.gameObject.tag == "player")
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "suelo")
+        {
+            grounded = true;
         }
     }
 }
