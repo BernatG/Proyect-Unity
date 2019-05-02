@@ -23,12 +23,13 @@ public class player : MonoBehaviour {
     private bool shot;
     private bool tieneLlave;
     public bool boolFinal;
+    public string scenename;
     //public Image lifeImg;
 
     private GameObject plataformaIgnorada;
     private GameObject instantiatedProjectile;
     public GameObject projectile;
-    public Canvas final;
+   
     private Rigidbody2D rb;
     public Text text_eliminar_enemigo;
     //private bool jump;
@@ -38,7 +39,7 @@ public class player : MonoBehaviour {
     void Start () {
         //maxLife = life;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        final.gameObject.SetActive(false);
+
         run = vel + 3;
         shot = false;
         tieneLlave = false;
@@ -145,11 +146,8 @@ public class player : MonoBehaviour {
         }
         if (collision.gameObject.tag == "final")
         {
-            final.gameObject.SetActive(true);
-            Time.timeScale = 0;
-            boolFinal = true;
+            Application.LoadLevel(scenename);
         }
-
     }
 
     private void OnCollisionStay2D(Collision2D collision)

@@ -22,7 +22,7 @@ public class camara : MonoBehaviour
         posicionJugador = GameObject.FindGameObjectWithTag("player").transform;
         distancia.z = -1;
         canvas.gameObject.SetActive(false);
-        //Time.timeScale = 1;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
