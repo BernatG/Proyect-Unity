@@ -9,8 +9,8 @@ public class player : MonoBehaviour {
     public float posicionAbismo;
 
     public int life;
-    private float maxLife;
-    private float fLife;
+    //private float maxLife;
+    //private float fLife;
 
     public float vel;
     private float run;
@@ -23,7 +23,7 @@ public class player : MonoBehaviour {
     private bool shot;
     private bool tieneLlave;
     public bool boolFinal;
-    public Image lifeImg;
+    //public Image lifeImg;
 
     private GameObject plataformaIgnorada;
     private GameObject instantiatedProjectile;
@@ -36,7 +36,7 @@ public class player : MonoBehaviour {
     // Use this for initialization
 
     void Start () {
-        maxLife = life;
+        //maxLife = life;
         rb = gameObject.GetComponent<Rigidbody2D>();
         final.gameObject.SetActive(false);
         run = vel + 3;
@@ -48,8 +48,8 @@ public class player : MonoBehaviour {
     // Update is called once per frame
 	void Update ()
     {
-        fLife = life;
-        lifeImg.fillAmount = fLife / maxLife;
+        //fLife = life;
+        //lifeImg.fillAmount = fLife / maxLife;
 
         if (plataformaIgnorada != null)
         {
