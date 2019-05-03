@@ -67,12 +67,12 @@ public class jefeFinal1 : MonoBehaviour {
 
             if (grounded)
             {
-                if (direccion == true && posicionJugadorX > gameObject.transform.position.x)
+                if (direccion == true && posicionJugadorX > gameObject.transform.position.x /*+ (GetComponent<SpriteRenderer>().bounds.size.x / 2)*/)
                 {
                     rb.velocity = new Vector2(velocidad, rb.velocity.y);
                     renderer.flipX = true;
                 }
-                else if (direccion == false && posicionJugadorX < gameObject.transform.position.x)
+                else if (direccion == false && posicionJugadorX < gameObject.transform.position.x /*- (GetComponent<SpriteRenderer>().bounds.size.x / 2)*/)
                 {
                     rb.velocity = new Vector2(-velocidad, rb.velocity.y);
                     renderer.flipX = false;
@@ -94,7 +94,10 @@ public class jefeFinal1 : MonoBehaviour {
         }
         else if (transformJugador.position.y < -18)
         {
-            activado = true;
+            if (transformJugador.position.x > 116)
+            {
+                activado = true;
+            }
         }
         
     }
@@ -119,6 +122,12 @@ public class jefeFinal1 : MonoBehaviour {
         if (collision.gameObject.tag == "suelo")
         {
             grounded = true;
+        }
+        if (collision.gameObject.tag == "limite")
+        {
+            direccion = true;
+            tiempo = 0;
+            turnosParaSalto++;
         }
     }
 }
