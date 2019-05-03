@@ -61,7 +61,7 @@ public class player : MonoBehaviour {
         }
 
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             rb.velocity = new Vector2(-vel, rb.velocity.y);
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
@@ -72,7 +72,7 @@ public class player : MonoBehaviour {
             }
         }
         
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             rb.velocity = new Vector2(vel, rb.velocity.y);
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
@@ -87,7 +87,7 @@ public class player : MonoBehaviour {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             //cc.enabled = false;
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), true);
