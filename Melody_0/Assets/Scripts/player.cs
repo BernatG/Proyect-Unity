@@ -29,6 +29,7 @@ public class player : MonoBehaviour {
     private GameObject plataformaIgnorada;
     private GameObject instantiatedProjectile;
     public GameObject projectile;
+    public ParticleSystem ps;
    
     private Rigidbody2D rb;
     public Text text_eliminar_enemigo;
@@ -44,11 +45,14 @@ public class player : MonoBehaviour {
         shot = false;
         tieneLlave = false;
         boolFinal = false;
+
+        ps = GameObject.Find("psPlayer").GetComponent<ParticleSystem>();
     }
 	
     // Update is called once per frame
 	void Update ()
     {
+        ps.Stop();
         //fLife = life;
         //lifeImg.fillAmount = fLife / maxLife;
 
@@ -97,6 +101,7 @@ public class player : MonoBehaviour {
             if (grouded) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 grouded = false;
+                ps.Play();
             }
             else if (jump2 == true && doublejump == true) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -125,26 +130,26 @@ public class player : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             //life--;
         }
-        if (collision.gameObject.tag == "llave")
+        else if (collision.gameObject.tag == "llave")
         {
             tieneLlave = true;
             collision.gameObject.SetActive(false);
         }
-        if (tieneLlave == true && collision.gameObject.tag == "puerta")
+        else if (tieneLlave == true && collision.gameObject.tag == "puerta")
         {
             collision.gameObject.SetActive(false);
         }
-        if (collision.gameObject.tag == "habilidad_doble_salto")
+        else if (collision.gameObject.tag == "habilidad_doble_salto")
         {
             doublejump = true;
             collision.gameObject.SetActive(false);
         }
-        if (collision.gameObject.tag == "habilidad_disparo")
+        else if (collision.gameObject.tag == "habilidad_disparo")
         {
             shot = true;
             collision.gameObject.SetActive(false);
         }
-        if (collision.gameObject.tag == "final")
+        else if (collision.gameObject.tag == "final")
         {
             Application.LoadLevel(scenename);
         }

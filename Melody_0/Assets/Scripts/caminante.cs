@@ -8,6 +8,8 @@ public class caminante : MonoBehaviour
     public float vel = 0;
     public int daño = 0;
 
+    public GameObject enemyParticle;
+
     private Rigidbody2D rb;
     private GameObject player;
     // Use this for initialization
@@ -38,15 +40,16 @@ public class caminante : MonoBehaviour
 
         if (collider.gameObject.tag == "player")
         {
+            enemyParticle.SetActive(true);
             Destroy(this.gameObject);
         }
         
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "player")
         {
             player.GetComponent<player>().life -= daño;
         }
-    }
+    }*/
 }
