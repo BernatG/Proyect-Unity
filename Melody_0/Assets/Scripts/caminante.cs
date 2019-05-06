@@ -40,8 +40,9 @@ public class caminante : MonoBehaviour
 
         if (collider.gameObject.tag == "player")
         {
-            enemyParticle.SetActive(true);
-            Destroy(this.gameObject);
+            enemyParticle.GetComponent<ParticleSystem>().Play();
+            gameObject.SetActive(false);
+            //Destroy(this.gameObject);
         }
         
     }

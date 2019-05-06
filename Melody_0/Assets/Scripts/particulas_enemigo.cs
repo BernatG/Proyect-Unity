@@ -5,18 +5,27 @@ using UnityEngine;
 public class particulas_enemigo : MonoBehaviour {
     public float tiempoParaEmision;
     private float tiempo = 0;
+
+    public GameObject enemy;
 	// Use this for initialization
 	void Start () {
-		
+        GetComponent<ParticleSystem>().Pause();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        tiempo += Time.deltaTime;
-
-        if (tiempo >= tiempoParaEmision)
+        if (enemy.activeInHierarchy == true)
         {
-            GetComponent<ParticleSystem>().Stop();
+            transform.position = enemy.transform.position;
+        }
+        else
+        {
+            tiempo += Time.deltaTime;
+
+            if (tiempo >= tiempoParaEmision)
+            {
+                GetComponent<ParticleSystem>().Stop();
+            }
         }
 	}
 }
