@@ -103,8 +103,10 @@ public class player : MonoBehaviour {
                 grouded = false;
                 ps.Play();
                 GetComponent<AudioSource>().Play();
+                GetComponent<Animator>().SetBool("salto", true);
             }
             else if (jump2 == true && doublejump == true) {
+                GetComponent<Animator>().Play("salto", -1, 0);
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 jump2 = false;
             }
@@ -126,7 +128,12 @@ public class player : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemigo")
+
+        if (collision.gameObject.tag == "suelo")
+        {
+            GetComponent<Animator>().SetBool("salto", false);
+        }
+        else if (collision.gameObject.tag == "enemigo")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             //life--;
@@ -140,7 +147,8 @@ public class player : MonoBehaviour {
         {
             collision.gameObject.SetActive(false);
         }
-        else if (collision.gameObject.tag == "habilidad_doble_salto")
+
+        if (collision.gameObject.tag == "habilidad_doble_salto")
         {
             doublejump = true;
             collision.gameObject.SetActive(false);
@@ -150,7 +158,8 @@ public class player : MonoBehaviour {
             shot = true;
             collision.gameObject.SetActive(false);
         }
-        else if (collision.gameObject.tag == "final")
+
+        if (collision.gameObject.tag == "final")
         {
             Application.LoadLevel(scenename);
         }
