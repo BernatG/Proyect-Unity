@@ -89,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4595182211669066}
   - component: {fileID: 82877434262407232}
-  - component: {fileID: 114020442097326616}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -908,8 +907,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: be4769c9da1834042ac51b9caaf14058, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -994,19 +993,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114020442097326616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1426328210684188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0344575c85a7c564bb8bd8554d3f0531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 1149093737740072}
-  audio: {fileID: 0}
 --- !u!114 &114629172982173256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1034,6 +1020,7 @@ MonoBehaviour:
   vel: 2
   "da\xF1o": 1
   enemyParticle: {fileID: 1662399619329772}
+  soundSource: {fileID: 1426328210684188}
 --- !u!198 &198575166398730328
 ParticleSystem:
   m_ObjectHideFlags: 1

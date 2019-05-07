@@ -102,6 +102,7 @@ public class player : MonoBehaviour {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 grouded = false;
                 ps.Play();
+                GetComponent<AudioSource>().Play();
             }
             else if (jump2 == true && doublejump == true) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);

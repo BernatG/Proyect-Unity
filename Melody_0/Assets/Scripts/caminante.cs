@@ -9,6 +9,7 @@ public class caminante : MonoBehaviour
     public int daño = 0;
 
     public GameObject enemyParticle;
+    public GameObject soundSource;
 
     private Rigidbody2D rb;
     private GameObject player;
@@ -40,6 +41,7 @@ public class caminante : MonoBehaviour
 
         if (collider.gameObject.tag == "player")
         {
+            soundSource.GetComponent<AudioSource>().Play();
             enemyParticle.GetComponent<ParticleSystem>().Play();
             gameObject.SetActive(false);
             //Destroy(this.gameObject);
