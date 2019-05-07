@@ -15,15 +15,17 @@ public class musica : MonoBehaviour {
         audioSource.clip = clip;
         audioSource.Play();
         DontDestroyOnLoad(this.gameObject);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        audioSource.volume = volMenu.audioSrc.volume;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
 
         if (SceneManager.GetActiveScene().name == "Menu")
         {
             audioSource.Stop();
         }
-	}
+    }
 }
