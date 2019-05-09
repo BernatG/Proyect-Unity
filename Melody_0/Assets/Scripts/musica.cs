@@ -7,7 +7,7 @@ public class musica : MonoBehaviour {
 
     private AudioSource audioSource;
     public AudioClip clip;
-    private VolumeValueChange volMenu;
+    public float musicVolume;
 
     // Use this for initialization
     void Start () {
@@ -15,14 +15,14 @@ public class musica : MonoBehaviour {
         audioSource.clip = clip;
         audioSource.Play();
         DontDestroyOnLoad(this.gameObject);
+        musicVolume = GlobalControl.Instance.musicVolume;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        
         if (SceneManager.GetActiveScene().name == "Menu")
         {
             audioSource.Stop();

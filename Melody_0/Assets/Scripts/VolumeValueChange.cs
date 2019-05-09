@@ -7,8 +7,6 @@ public class VolumeValueChange : MonoBehaviour
 
     public AudioSource audioSrc;
 
-    private float musicVolume = 1f;
-
     void Start()
     {
         audioSrc = GetComponent<AudioSource>();
@@ -16,10 +14,12 @@ public class VolumeValueChange : MonoBehaviour
 
     void Update()
     {
-        audioSrc.volume = musicVolume;
+        audioSrc.volume = GlobalControl.Instance.musicVolume;
+        Debug.Log(musicVolume, this);
     }
 
     
+
     public void SetVolume(float vol)
     {
         musicVolume = vol;
