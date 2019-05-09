@@ -21,11 +21,10 @@ public class jefeFinal1 : MonoBehaviour {
 
     private float tiempo = 0;
     private bool grounded = true;
-    public int life = 1;
-    private float fLife;
+    public float life = 1;
     private float maxLife;
 
-    public Image imgLife;
+    public GameObject imgLife;
     private SpriteRenderer renderer;
 	// Use this for initialization
 	void Start () {
@@ -40,10 +39,24 @@ public class jefeFinal1 : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
+
+        if (transformJugador.position.y < -18f)
+        {
+            if (transformJugador.position.x > 116f)
+            {
+                activado = true;
+            }
+        }
+        else
+        {
+            activado = false;
+            imgLife.SetActive(false);
+        }
+
         if (activado)
         {
-            fLife = life;
-            imgLife.fillAmount = fLife / maxLife;
+            imgLife.SetActive(true);
+            imgLife.GetComponent<Image>().fillAmount = life / maxLife;
             
             if (life <= 0)
             {
@@ -92,13 +105,6 @@ public class jefeFinal1 : MonoBehaviour {
                 }
             }
         }
-        else if (transformJugador.position.y < -18)
-        {
-            if (transformJugador.position.x > 116)
-            {
-                activado = true;
-            }
-        }
         
     }
     
@@ -117,6 +123,12 @@ public class jefeFinal1 : MonoBehaviour {
     {
         if (collision.gameObject.tag == "player")
         {
+            collision.gameObject.GetComponent<Transform>().position = new Vector3(116f, 3.49f, 0f);
+            life = maxLife;
+            activado = true;
+            GetComponentInParent<Transform>().position = new Vector3(153f, -22.1f, 0);
+            buscando = true;
+            rb.velocity = new Vector3(0, 0, 0);
             //Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "suelo")
