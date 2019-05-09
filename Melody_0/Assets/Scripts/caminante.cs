@@ -12,12 +12,12 @@ public class caminante : MonoBehaviour
     public GameObject soundSource;
 
     private Rigidbody2D rb;
-    private GameObject player;
+    //private GameObject player;
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("player");
+        //player = GameObject.FindGameObjectWithTag("player");
     }
 
     // Update is called once per frame

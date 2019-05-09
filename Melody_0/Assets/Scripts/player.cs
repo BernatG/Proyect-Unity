@@ -19,6 +19,7 @@ public class player : MonoBehaviour {
     public bool doublejump;
     private bool jump2;
     public float jumpPower = 6.5f;
+    [HideInInspector] public bool jefeTocado = false;
 
     private bool shot;
     private bool tieneLlave;
@@ -66,32 +67,39 @@ public class player : MonoBehaviour {
             }
         }
 
-
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (jefeTocado == true)
         {
-            rb.velocity = new Vector2(-vel, rb.velocity.y);
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
-
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                rb.velocity = new Vector2(-run, rb.velocity.y);
-            }
-        }
-        
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            rb.velocity = new Vector2(vel, rb.velocity.y);
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                rb.velocity = new Vector2(run, rb.velocity.y);
-                
-            }
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
         }
         else
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                rb.velocity = new Vector2(-vel, rb.velocity.y);
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    rb.velocity = new Vector2(-run, rb.velocity.y);
+                }
+            }
+
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                rb.velocity = new Vector2(vel, rb.velocity.y);
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    rb.velocity = new Vector2(run, rb.velocity.y);
+
+                }
+            }
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
         }
+        
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
@@ -134,6 +142,7 @@ public class player : MonoBehaviour {
         if (collision.gameObject.tag == "suelo")
         {
             GetComponent<Animator>().SetBool("salto", false);
+            jefeTocado = false;
         }
         else if (collision.gameObject.tag == "enemigo")
         {
