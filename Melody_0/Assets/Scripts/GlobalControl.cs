@@ -10,7 +10,7 @@ public class GlobalControl : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(musicVolume, this);
+
     }
 
     void Awake()

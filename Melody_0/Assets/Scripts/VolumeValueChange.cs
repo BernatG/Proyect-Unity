@@ -15,13 +15,12 @@ public class VolumeValueChange : MonoBehaviour
     void Update()
     {
         audioSrc.volume = GlobalControl.Instance.musicVolume;
-        Debug.Log(musicVolume, this);
     }
 
     
 
     public void SetVolume(float vol)
     {
-        musicVolume = vol;
+        GlobalControl.Instance.musicVolume = vol;
     }
 }

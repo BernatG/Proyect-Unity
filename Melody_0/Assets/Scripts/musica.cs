@@ -15,7 +15,7 @@ public class musica : MonoBehaviour {
         audioSource.clip = clip;
         audioSource.Play();
         DontDestroyOnLoad(this.gameObject);
-        musicVolume = GlobalControl.Instance.musicVolume;
+        audioSource.volume = GlobalControl.Instance.musicVolume;
 
     }
 

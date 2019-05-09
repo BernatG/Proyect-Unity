@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4595182211669066}
   - component: {fileID: 82877434262407232}
+  - component: {fileID: 114370056077650280}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -954,7 +955,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -978,7 +979,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95916430308059258
 Animator:
   serializedVersion: 3
@@ -996,6 +997,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114370056077650280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426328210684188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59915b605580054db4ecb1698222cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 82877434262407232}
 --- !u!114 &114629172982173256
 MonoBehaviour:
   m_ObjectHideFlags: 1

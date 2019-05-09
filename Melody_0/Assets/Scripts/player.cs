@@ -26,6 +26,8 @@ public class player : MonoBehaviour {
     public string scenename;
     //public Image lifeImg;
 
+    public Transform jugador;
+    private Vector2 posJugador;
     private GameObject plataformaIgnorada;
     private GameObject instantiatedProjectile;
     public GameObject projectile;
@@ -40,7 +42,7 @@ public class player : MonoBehaviour {
     void Start () {
         //maxLife = life;
         rb = gameObject.GetComponent<Rigidbody2D>();
-
+        posJugador = new Vector2(jugador.position.x, jugador.position.y);
         run = vel + 3;
         shot = false;
         tieneLlave = false;
@@ -122,7 +124,7 @@ public class player : MonoBehaviour {
         }
 
         if (life <= 0 || rb.position.y < (posicionAbismo)) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            transform.position = posJugador;
         }
     }
 
@@ -135,7 +137,7 @@ public class player : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "enemigo")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            transform.position = posJugador;
             //life--;
         }
         else if (collision.gameObject.tag == "llave")

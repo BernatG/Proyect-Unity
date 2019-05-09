@@ -1905,7 +1905,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267987130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.07, y: 0.87, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.2410789, y: 2.587534, z: 0.6635275}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2716,6 +2716,11 @@ Prefab:
       propertyPath: posicionAbismo
       value: -24.09
       objectReference: {fileID: 0}
+    - target: {fileID: 114408604946549368, guid: e2acc09df6f347d438c52378d6389acf,
+        type: 2}
+      propertyPath: jugador
+      value: 
+      objectReference: {fileID: 481823496}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2acc09df6f347d438c52378d6389acf, type: 2}
   m_IsPrefabParent: 0
@@ -3375,6 +3380,7 @@ MonoBehaviour:
   jumpPower: 6.5
   boolFinal: 0
   scenename: 
+  jugador: {fileID: 0}
   projectile: {fileID: 1340841584932426, guid: 2f419299721182c479bad73d86bd2c72, type: 2}
   ps: {fileID: 0}
   text_eliminar_enemigo: {fileID: 0}
