@@ -9,8 +9,7 @@ public class ascensor : MonoBehaviour {
 
     public float pLimiteY;
     public float nLimiteY;
-    float posiciónInicial;
-
+   
     float nx;
     float ny;
 
@@ -19,7 +18,7 @@ public class ascensor : MonoBehaviour {
 
     bool dirección;
 
-    private Rigidbody2D rb;
+
  	// Use this for initialization
 	void Start () {
         px = velocidadX;
@@ -28,11 +27,7 @@ public class ascensor : MonoBehaviour {
         nx = velocidadX * (-1);
         ny = velocidadY * (-1);
 
-        posiciónInicial = transform.position.y;
-
         dirección = true;
-
-        rb = gameObject.GetComponent<Rigidbody2D>();
 	}
 
     void MovePlatform(float a, float b) {

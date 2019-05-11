@@ -36,6 +36,8 @@ public class player : MonoBehaviour {
    
     private Rigidbody2D rb;
     public Text text_eliminar_enemigo;
+    public Text text_movimiento;
+    public Text text_correr;
     //private bool jump;
 
     // Use this for initialization
@@ -132,7 +134,9 @@ public class player : MonoBehaviour {
         }
 
         if (rb.position.y < (posicionAbismo)) {
-            GameObject.Find("Muerte").GetComponent<AudioSource>().Play();
+            AudioSource sonidoMuerte = GameObject.Find("Muerte").GetComponent<AudioSource>();
+            sonidoMuerte.volume = GlobalControl.Instance.musicVolume;
+            sonidoMuerte.Play();
             transform.position = posJugador;
         }
     }
@@ -169,7 +173,9 @@ public class player : MonoBehaviour {
         {
             doublejump = true;
             collision.gameObject.SetActive(false);
-            GameObject.Find("habilidad_sonido").GetComponent<AudioSource>().Play();
+            AudioSource sonidoDobleSalto = GameObject.Find("habilidad_sonido").GetComponent<AudioSource>();
+            sonidoDobleSalto.volume = GlobalControl.Instance.musicVolume;
+            sonidoDobleSalto.Play();
             GameObject.Find("particles_habilidad").GetComponent<ParticleSystem>().Stop();
         }
         else if (collision.gameObject.tag == "habilidad_disparo")
@@ -195,13 +201,31 @@ public class player : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D coll) {
 
+        if (coll.gameObject.tag == "trigger_mensaje_movimiento")
+        {
+            for (float i = 0; i < 1; i += 0.01f)
+            {
+                text_movimiento.transform.localScale = new Vector3(i, i, 0);
+            }
+            text_movimiento.gameObject.SetActive(true);
+        }
+
         if (coll.gameObject.tag == "trigger_mensaje_eliminar_caminante")
         {
             for (float i = 0; i < 1; i += 0.01f)
             {
                 text_eliminar_enemigo.transform.localScale = new Vector3(i, i, 0);
             }
-            
+            text_eliminar_enemigo.gameObject.SetActive(true);
+        }
+
+        if (coll.gameObject.tag == "trigger_mensaje_correr")
+        {
+            for (float i = 0; i < 1; i += 0.01f)
+            {
+                text_correr.transform.localScale = new Vector3(i, i, 0);
+            }
+            text_correr.gameObject.SetActive(true);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -221,15 +245,27 @@ public class player : MonoBehaviour {
     }
     private void OnTriggerExit2D(Collider2D coll)
     {
+        if (coll.gameObject.tag == "trigger_mensaje_correr")
+        {
+            text_correr.gameObject.SetActive(false);
+        }
+
+        if (coll.gameObject.tag == "trigger_mensaje_movimiento")
+        {
+            text_movimiento.gameObject.SetActive(false);
+        }
+
         if (coll.gameObject.tag == "trigger_mensaje_eliminar_caminante")
         {
             text_eliminar_enemigo.gameObject.SetActive(false);
         }
-        else if (coll.gameObject.tag == "subPlataforma")
+
+        if (coll.gameObject.tag == "subPlataforma")
         {
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), coll.gameObject.transform.parent.gameObject.GetComponent<Collider2D>(), false);
         }
-        else if (coll.gameObject.tag == "suelo")
+
+        if (coll.gameObject.tag == "suelo")
         {
             grouded = true;
             jump2 = true;

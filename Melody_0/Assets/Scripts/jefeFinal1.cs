@@ -28,9 +28,9 @@ public class jefeFinal1 : MonoBehaviour {
     private float maxLife;
 
     public GameObject imgLife;
-    private SpriteRenderer renderer;
-	// Use this for initialization
-	void Start () {
+    private new SpriteRenderer renderer;
+    // Use this for initialization
+    void Start () {
         turnosParaSalto = 0;
         transformJugador = GameObject.FindGameObjectWithTag("player").transform;
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -58,17 +58,17 @@ public class jefeFinal1 : MonoBehaviour {
             if (transformJugador.position.x > 116f)
             {
                 activado = true;
-                if (musica == false)
-                {
-                    foreach (var root in GameObject.Find("origen_musica").scene.GetRootGameObjects())
-                    {
-                        Destroy(root);
-                    }
-                    //Destroy(GameObject.Find("origen_musica"));
-                    GameObject.Find("MusicaFinal").GetComponent<AudioSource>().clip = clip;
-                    GameObject.Find("MusicaFinal").GetComponent<AudioSource>().Play();
-                    musica = true;
-                }
+                //if (musica == false)
+                //{
+                //    foreach (var root in GameObject.Find("origen_musica").scene.GetRootGameObjects())
+                //    {
+                //        Destroy(root);
+                //    }
+                //    //Destroy(GameObject.Find("origen_musica"));
+                //    GameObject.Find("MusicaFinal").GetComponent<AudioSource>().clip = clip;
+                //    GameObject.Find("MusicaFinal").GetComponent<AudioSource>().Play();
+                //    musica = true;
+                //}
             }
         }
         else

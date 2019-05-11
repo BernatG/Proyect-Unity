@@ -5,9 +5,9 @@ using UnityEngine;
 public class soundDestroyed : MonoBehaviour {
 
     public GameObject enemy;
-    public AudioSource audio;
-	// Use this for initialization
-	void Start () {
+    public new AudioSource audio;
+    // Use this for initialization
+    void Start () {
         audio = GetComponent<AudioSource>();
 	}
 	
