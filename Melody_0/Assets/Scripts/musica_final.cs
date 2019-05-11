@@ -16,8 +16,11 @@ public class musica_final : MonoBehaviour {
 
         if (coll.gameObject.tag == "player")
         {
-            musicaFinal.Play();
-            Destroy(GameObject.Find("origen_musica"));
+            if (!musicaFinal.isPlaying)
+            {
+                musicaFinal.Play();
+                Destroy(GameObject.Find("origen_musica"));
+            }
         }
         else
         {

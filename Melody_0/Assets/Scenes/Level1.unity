@@ -3794,7 +3794,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Shift + \n(movimento keys) \n--> run "
+  m_Text: "Shift + \n(movement keys) \n--> run "
 --- !u!222 &1842281797
 CanvasRenderer:
   m_ObjectHideFlags: 0
