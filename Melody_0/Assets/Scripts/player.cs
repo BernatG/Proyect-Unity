@@ -131,7 +131,8 @@ public class player : MonoBehaviour {
             
         }
 
-        if (life <= 0 || rb.position.y < (posicionAbismo)) {
+        if (rb.position.y < (posicionAbismo)) {
+            GameObject.Find("Muerte").GetComponent<AudioSource>().Play();
             transform.position = posJugador;
         }
     }
@@ -146,6 +147,7 @@ public class player : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "enemigo")
         {
+            GameObject.Find("Muerte").GetComponent<AudioSource>().Play();
             transform.position = posJugador;
             //life--;
         }
@@ -158,11 +160,17 @@ public class player : MonoBehaviour {
         {
             collision.gameObject.SetActive(false);
         }
+        else if (collision.gameObject.tag == "jefe")
+        {
+            GameObject.Find("Muerte").GetComponent<AudioSource>().Play();
+        }
 
         if (collision.gameObject.tag == "habilidad_doble_salto")
         {
             doublejump = true;
             collision.gameObject.SetActive(false);
+            GameObject.Find("habilidad_sonido").GetComponent<AudioSource>().Play();
+            GameObject.Find("particles_habilidad").GetComponent<ParticleSystem>().Stop();
         }
         else if (collision.gameObject.tag == "habilidad_disparo")
         {

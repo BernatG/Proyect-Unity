@@ -8,7 +8,9 @@ public class jefeFinal1 : MonoBehaviour {
 
     public float tiempoLimite = 1;
     public float velocidad;
+    public float velocidadInicial;
     public int turnosNecesariosParaSalto = 0;
+    public AudioClip clip;
     private int turnosParaSalto;
 
     private Transform transformJugador;
@@ -18,6 +20,7 @@ public class jefeFinal1 : MonoBehaviour {
     private bool activado;
     private bool buscando;
     private bool direccion;
+    private bool musica = false;
 
     private float tiempo = 0;
     private bool grounded = true;
@@ -35,16 +38,37 @@ public class jefeFinal1 : MonoBehaviour {
         renderer = GetComponent<SpriteRenderer>();
         activado = false;
         maxLife = life;
+        velocidadInicial = velocidad;
 	}
 
     // Update is called once per frame
     void FixedUpdate () {
 
-        if (transformJugador.position.y < -18f)
+        if (turnosParaSalto >= turnosNecesariosParaSalto)
+        {
+            gameObject.GetComponent<ParticleSystem>().Play();
+        }
+        else
+        {
+            gameObject.GetComponent<ParticleSystem>().Stop();
+        }
+
+        if (transformJugador.position.y < -15f)
         {
             if (transformJugador.position.x > 116f)
             {
                 activado = true;
+                if (musica == false)
+                {
+                    foreach (var root in GameObject.Find("origen_musica").scene.GetRootGameObjects())
+                    {
+                        Destroy(root);
+                    }
+                    //Destroy(GameObject.Find("origen_musica"));
+                    GameObject.Find("MusicaFinal").GetComponent<AudioSource>().clip = clip;
+                    GameObject.Find("MusicaFinal").GetComponent<AudioSource>().Play();
+                    musica = true;
+                }
             }
         }
         else
@@ -60,6 +84,7 @@ public class jefeFinal1 : MonoBehaviour {
             
             if (life <= 0)
             {
+                Destroy(GameObject.Find("Audio Source"));
                 SceneManager.LoadScene("Menu");
             }
 
@@ -124,11 +149,15 @@ public class jefeFinal1 : MonoBehaviour {
         if (collision.gameObject.tag == "player")
         {
             collision.gameObject.GetComponent<Transform>().position = new Vector3(116f, 3.49f, 0f);
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
             life = maxLife;
             activado = true;
             GetComponentInParent<Transform>().position = new Vector3(153f, -22.1f, 0);
+            turnosParaSalto = -1;
             buscando = true;
             rb.velocity = new Vector3(0, 0, 0);
+            velocidad = velocidadInicial;
+            
             //Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "suelo")
