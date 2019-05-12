@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -39,6 +39,7 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -361,10 +361,10 @@ RectTransform:
   m_Father: {fileID: 847195865}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.418, y: 0.34654236}
-  m_AnchorMax: {x: 0.5812916, y: 0.41000003}
-  m_AnchoredPosition: {x: 0.6199951, y: -84.67}
-  m_SizeDelta: {x: -1.7999992, y: 2.7000008}
+  m_AnchorMin: {x: 0.43352085, y: 0.27100003}
+  m_AnchorMax: {x: 0.56439584, y: 0.326}
+  m_AnchoredPosition: {x: 1.6199951, y: -1.1699982}
+  m_SizeDelta: {x: 62.2, y: 13.699997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &24924987
 MonoBehaviour:
@@ -969,54 +969,69 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
-    - serializedVersion: 2
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - serializedVersion: 2
+    - serializedVersion: 3
       time: 0
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
@@ -2891,10 +2906,10 @@ RectTransform:
   m_Father: {fileID: 847195865}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 642, y: -327}
-  m_SizeDelta: {x: 34.1, y: 26}
+  m_AnchorMin: {x: 0.75429165, y: 0.14}
+  m_AnchorMax: {x: 0.91800004, y: 0.259}
+  m_AnchoredPosition: {x: -3, y: -5.5}
+  m_SizeDelta: {x: -279.90002, y: -103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1035178093
 MonoBehaviour:
@@ -3276,10 +3291,10 @@ RectTransform:
   m_Father: {fileID: 847195865}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.418, y: 0.09671282}
-  m_AnchorMax: {x: 0.5812916, y: 0.16170211}
-  m_AnchoredPosition: {x: 0.6199951, y: 37.50891}
-  m_SizeDelta: {x: -1.7999992, y: 1.7000122}
+  m_AnchorMin: {x: 0.43352085, y: 0.14}
+  m_AnchorMax: {x: 0.5664792, y: 0.192}
+  m_AnchoredPosition: {x: -0.38000488, y: -0.99108887}
+  m_SizeDelta: {x: 58.2, y: 16.700012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1092700733
 MonoBehaviour:
@@ -4173,10 +4188,10 @@ RectTransform:
   m_Father: {fileID: 847195865}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.42100003, y: 0.17841493}
-  m_AnchorMax: {x: 0.5812916, y: 0.24211703}
-  m_AnchoredPosition: {x: -1.9508972, y: 22.234009}
-  m_SizeDelta: {x: 3.2000008, y: 2.1000004}
+  m_AnchorMin: {x: 0.43352085, y: 0.20500001}
+  m_AnchorMax: {x: 0.5664792, y: 0.259}
+  m_AnchoredPosition: {x: 0.049102783, y: -0.2659912}
+  m_SizeDelta: {x: 57.2, y: 13.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1537407441
 MonoBehaviour:
@@ -5185,10 +5200,10 @@ RectTransform:
   m_Father: {fileID: 847195865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -3}
-  m_SizeDelta: {x: 100, y: 88.3}
+  m_SizeDelta: {x: -1820, y: -979.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090373443
 MonoBehaviour:

@@ -18,6 +18,7 @@ public class musica_final : MonoBehaviour {
         {
             if (!musicaFinal.isPlaying)
             {
+                musicaFinal.volume = GlobalControl.Instance.musicVolume;
                 musicaFinal.Play();
                 Destroy(GameObject.Find("origen_musica"));
             }
