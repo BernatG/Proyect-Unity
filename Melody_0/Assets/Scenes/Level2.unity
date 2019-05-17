@@ -625,6 +625,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1901627717776292, guid: 167a3d849fff1e14eaa2a8a71c62a9f0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 167a3d849fff1e14eaa2a8a71c62a9f0, type: 2}
   m_IsPrefabParent: 0
@@ -1071,8 +1075,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: b0deea8484f259a4a98f2cb06932bbf4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_Sprite: {fileID: 21300000, guid: 16e96a8d20f53ed48bfcc20be014826b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1518,7 +1522,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 564996032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.41, y: -3.08, z: -10}
   m_LocalScale: {x: 2.2410789, y: 2.587534, z: 0.6635275}
   m_Children: []
   m_Father: {fileID: 0}

@@ -32,7 +32,8 @@ public class player : MonoBehaviour {
     private GameObject plataformaIgnorada;
     private GameObject instantiatedProjectile;
     public GameObject projectile;
-    public ParticleSystem ps;
+    public ParticleSystem psSalto;
+    public ParticleSystem psMuerte;
    
     private Rigidbody2D rb;
     public Text text_eliminar_enemigo;
@@ -51,13 +52,14 @@ public class player : MonoBehaviour {
         tieneLlave = false;
         boolFinal = false;
 
-        ps = GameObject.Find("psPlayer").GetComponent<ParticleSystem>();
+        psSalto = GameObject.Find("psPlayer").GetComponent<ParticleSystem>();
+        psMuerte = GameObject.Find("psMuerte").GetComponent<ParticleSystem>();
     }
 	
     // Update is called once per frame
 	void Update ()
     {
-        ps.Stop();
+        psSalto.Stop();
         //fLife = life;
         //lifeImg.fillAmount = fLife / maxLife;
 
@@ -113,7 +115,7 @@ public class player : MonoBehaviour {
             if (grouded) {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 grouded = false;
-                ps.Play();
+                psSalto.Play();
                 GetComponent<AudioSource>().Play();
                 GetComponent<Animator>().SetBool("salto", true);
             }
@@ -137,6 +139,7 @@ public class player : MonoBehaviour {
             AudioSource sonidoMuerte = GameObject.Find("Muerte").GetComponent<AudioSource>();
             sonidoMuerte.volume = GlobalControl.Instance.musicVolume;
             sonidoMuerte.Play();
+            psMuerte.Play();
             transform.position = posJugador;
         }
     }
@@ -151,6 +154,8 @@ public class player : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "enemigo")
         {
+            GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
+            psMuerte.Play();
             GameObject.Find("Muerte").GetComponent<AudioSource>().Play();
             transform.position = posJugador;
             //life--;
@@ -166,6 +171,8 @@ public class player : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "jefe")
         {
+            GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
+            psMuerte.Play();
             GameObject.Find("Muerte").GetComponent<AudioSource>().Play();
         }
 
