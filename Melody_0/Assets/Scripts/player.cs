@@ -137,7 +137,9 @@ public class player : MonoBehaviour {
 
         if (rb.position.y < (posicionAbismo)) {
             AudioSource sonidoMuerte = GameObject.Find("Muerte").GetComponent<AudioSource>();
-            sonidoMuerte.volume = GlobalControl.Instance.musicVolume;
+            GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
+            psMuerte.Play();
+//            sonidoMuerte.volume = GlobalControl.Instance.musicVolume;
             sonidoMuerte.Play();
             psMuerte.Play();
             transform.position = posJugador;
@@ -171,8 +173,8 @@ public class player : MonoBehaviour {
         }
         else if (collision.gameObject.tag == "jefe")
         {
-            GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
-            psMuerte.Play();
+            //GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
+            //psMuerte.Play();
             GameObject.Find("Muerte").GetComponent<AudioSource>().Play();
         }
 

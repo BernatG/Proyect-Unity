@@ -11,21 +11,21 @@ public class jefeFinal1 : MonoBehaviour {
     public float velocidadInicial;
     public int turnosNecesariosParaSalto = 0;
     public AudioClip clip;
-    private int turnosParaSalto;
+    [HideInInspector] public int turnosParaSalto;
 
     private Transform transformJugador;
     private Rigidbody2D rb;
     private float posicionJugadorX;
 
-    private bool activado;
-    private bool buscando;
+    [HideInInspector] public bool activado;
+    [HideInInspector] public bool buscando;
     private bool direccion;
     private bool musica = false;
 
     private float tiempo = 0;
     private bool grounded = true;
     public float life = 1;
-    private float maxLife;
+    [HideInInspector] public float maxLife;
 
     public GameObject imgLife;
     private new SpriteRenderer renderer;
@@ -148,6 +148,8 @@ public class jefeFinal1 : MonoBehaviour {
     {
         if (collision.gameObject.tag == "player")
         {
+            GameObject.Find("psMuerte").GetComponent<Transform>().position = collision.gameObject.GetComponent<Transform>().position;
+            GameObject.Find("psMuerte").GetComponent<ParticleSystem>().Play();
             collision.gameObject.GetComponent<Transform>().position = new Vector3(116f, 3.49f, 0f);
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
             life = maxLife;
