@@ -16,6 +16,9 @@ public class jefeFinal1 : MonoBehaviour {
     private Transform transformJugador;
     private Rigidbody2D rb;
     private float posicionJugadorX;
+    private int contadorFinal;
+    public GameObject enemyParticle;
+
 
     [HideInInspector] public bool activado;
     [HideInInspector] public bool buscando;
@@ -39,7 +42,11 @@ public class jefeFinal1 : MonoBehaviour {
         activado = false;
         maxLife = life;
         velocidadInicial = velocidad;
-	}
+        contadorFinal = 0;
+        buscando = true;
+        
+
+    }
 
     // Update is called once per frame
     void FixedUpdate () {
@@ -85,7 +92,13 @@ public class jefeFinal1 : MonoBehaviour {
             if (life <= 0)
             {
                 Destroy(GameObject.Find("Audio Source"));
+                contadorFinal++;
+                buscando = false;
+                enemyParticle.GetComponent<ParticleSystem>().Play();
+                if (contadorFinal == 300)
+                {
                 SceneManager.LoadScene("Menu");
+                }
             }
 
             if (buscando == true)
@@ -148,17 +161,20 @@ public class jefeFinal1 : MonoBehaviour {
     {
         if (collision.gameObject.tag == "player")
         {
-            GameObject.Find("psMuerte").GetComponent<Transform>().position = collision.gameObject.GetComponent<Transform>().position;
-            GameObject.Find("psMuerte").GetComponent<ParticleSystem>().Play();
-            collision.gameObject.GetComponent<Transform>().position = new Vector3(116f, 3.49f, 0f);
-            collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
-            life = maxLife;
-            activado = true;
-            GetComponentInParent<Transform>().position = new Vector3(153f, -22.1f, 0);
-            turnosParaSalto = -1;
-            buscando = true;
-            rb.velocity = new Vector3(0, 0, 0);
-            velocidad = velocidadInicial;
+            if (life > 0)
+            {
+                GameObject.Find("psMuerte").GetComponent<Transform>().position = collision.gameObject.GetComponent<Transform>().position;
+                GameObject.Find("psMuerte").GetComponent<ParticleSystem>().Play();
+                collision.gameObject.GetComponent<Transform>().position = new Vector3(116f, 3.49f, 0f);
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+                life = maxLife;
+                activado = true;
+                GetComponentInParent<Transform>().position = new Vector3(153f, -22.1f, 0);
+                turnosParaSalto = -1;
+                buscando = true;
+                rb.velocity = new Vector3(0, 0, 0);
+                velocidad = velocidadInicial;
+            }
             
             //Destroy(collision.gameObject);
         }

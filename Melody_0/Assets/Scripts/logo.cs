@@ -5,6 +5,8 @@ using UnityEngine;
 public class logo : MonoBehaviour {
 
     int contador;
+    public int segundos = 232;
+    public string scena;
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +16,9 @@ public class logo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         contador += 1;
-        if (contador == 232)
+        if (contador == segundos)
         {
-            Application.LoadLevel("Menu");
+            Application.LoadLevel(scena);
         }
 	}
 }

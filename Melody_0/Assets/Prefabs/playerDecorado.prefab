@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4763341157044144}
   - component: {fileID: 82661309354075658}
+  - component: {fileID: 114700706998368640}
   m_Layer: 0
   m_Name: Muerte
   m_TagString: Untagged
@@ -419,6 +420,18 @@ MonoBehaviour:
   text_eliminar_enemigo: {fileID: 0}
   text_movimiento: {fileID: 0}
   text_correr: {fileID: 0}
+--- !u!114 &114700706998368640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360372224461444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59915b605580054db4ecb1698222cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 82661309354075658}
 --- !u!198 &198427009502573590
 ParticleSystem:
   m_ObjectHideFlags: 1
