@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +11,7 @@ public class jefeFinal1 : MonoBehaviour {
     public float velocidadInicial;
     public int turnosNecesariosParaSalto = 0;
     public AudioClip clip;
+    public GameObject jefe; 
     [HideInInspector] public int turnosParaSalto;
 
     private Transform transformJugador;
@@ -18,8 +19,8 @@ public class jefeFinal1 : MonoBehaviour {
     private float posicionJugadorX;
     private int contadorFinal;
     public GameObject enemyParticle;
-
-
+    
+    
     [HideInInspector] public bool activado;
     [HideInInspector] public bool buscando;
     private bool direccion;
@@ -109,10 +110,12 @@ public class jefeFinal1 : MonoBehaviour {
                 if (posicionJugadorX > gameObject.transform.position.x)
                 {
                     direccion = true;
+                    transform.rotation = Quaternion.Euler(0,180,0);
                 }
                 else if (posicionJugadorX < gameObject.transform.position.x)
                 {
                     direccion = false;
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
             }
 
@@ -121,12 +124,14 @@ public class jefeFinal1 : MonoBehaviour {
                 if (direccion == true && posicionJugadorX > gameObject.transform.position.x /*+ (GetComponent<SpriteRenderer>().bounds.size.x / 2)*/)
                 {
                     rb.velocity = new Vector2(velocidad, rb.velocity.y);
-                    renderer.flipX = true;
+                    
+                    //renderer.flipX = true;
                 }
                 else if (direccion == false && posicionJugadorX < gameObject.transform.position.x /*- (GetComponent<SpriteRenderer>().bounds.size.x / 2)*/)
                 {
                     rb.velocity = new Vector2(-velocidad, rb.velocity.y);
-                    renderer.flipX = false;
+                    
+                    //renderer.flipX = false;
                 }
                 else
                 {
@@ -183,6 +188,12 @@ public class jefeFinal1 : MonoBehaviour {
             grounded = true;
         }
         if (collision.gameObject.tag == "limite")
+        {
+            direccion = true;
+            tiempo = 0;
+            turnosParaSalto++;
+        }
+        if (collision.gameObject.tag == "limite_derecho")
         {
             direccion = true;
             tiempo = 0;

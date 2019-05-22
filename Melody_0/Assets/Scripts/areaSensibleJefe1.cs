@@ -7,15 +7,16 @@ public class areaSensibleJefe1 : MonoBehaviour {
     public GameObject jefe;
     public float separacionY;
     public float separacionX;
+    Vector3 separacion;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        separacion = new Vector3(transform.position.x - jefe.transform.position.x, transform.position.y - jefe.transform.position.y, transform.position.z - jefe.transform.position.z);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(jefe.transform.position.x - separacionX, jefe.transform.position.y + separacionY, jefe.transform.position.z);
-	}
+        transform.position = jefe.transform.position + separacion;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

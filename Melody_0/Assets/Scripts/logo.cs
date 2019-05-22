@@ -18,6 +18,7 @@ public class logo : MonoBehaviour {
         contador += 1;
         if (contador == segundos)
         {
+            print("hola");
             Application.LoadLevel(scena);
         }
 	}
