@@ -19,6 +19,7 @@ public class player : MonoBehaviour {
     public bool doublejump;
     private bool jump2;
     public float jumpPower = 6.5f;
+    private bool hack;
     [HideInInspector] public bool jefeTocado = false;
 
     private bool shot;
@@ -51,32 +52,134 @@ public class player : MonoBehaviour {
         shot = false;
         tieneLlave = false;
         boolFinal = false;
+        hack = false;
 
         psSalto = GameObject.Find("psPlayer").GetComponent<ParticleSystem>();
         psMuerte = GameObject.Find("psMuerte").GetComponent<ParticleSystem>();
     }
-	
-    // Update is called once per frame
-	void Update ()
-    {
-        psSalto.Stop();
-        //fLife = life;
-        //lifeImg.fillAmount = fLife / maxLife;
 
-        if (plataformaIgnorada != null)
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            if (transform.position.y - (GetComponent<CapsuleCollider2D>().bounds.size.y / 3) > plataformaIgnorada.transform.position.y)
+            if (hack == false)
             {
-                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), false);
+                hack = true;                
+            }
+            else
+            {
+                hack = false;
+            }
+        }
+        if (hack == false)
+        {
+            psSalto.Stop();
+            //fLife = life;
+            //lifeImg.fillAmount = fLife / maxLife;
+
+            if (plataformaIgnorada != null)
+            {
+                if (transform.position.y - (GetComponent<CapsuleCollider2D>().bounds.size.y / 3) > plataformaIgnorada.transform.position.y)
+                {
+                    Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), false);
+                }
+            }
+
+            if (jefeTocado == true)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                {
+                    rb.velocity = new Vector2(-vel, rb.velocity.y);
+                    gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        rb.velocity = new Vector2(-run, rb.velocity.y);
+                    }
+                }
+
+                else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                {
+                    rb.velocity = new Vector2(vel, rb.velocity.y);
+                    gameObject.GetComponent<SpriteRenderer>().flipX = false;
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        rb.velocity = new Vector2(run, rb.velocity.y);
+
+                    }
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
+            }
+
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                //cc.enabled = false;
+                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (grouded)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    grouded = false;
+                    psSalto.Play();
+                    GetComponent<AudioSource>().Play();
+                    GetComponent<Animator>().SetBool("salto", true);
+                }
+                else if (jump2 == true && doublejump == true)
+                {
+                    GetComponent<Animator>().Play("salto", -1, 0);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    jump2 = false;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightControl) && shot == true)
+            {
+
+                instantiatedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0), gameObject.transform);
+                if (gameObject.GetComponent<SpriteRenderer>().flipX == true)
+                {
+                    instantiatedProjectile.GetComponent<proyectil_jugador>().vel *= (-2);
+                }
+
+            }
+
+            if (rb.position.y < (posicionAbismo))
+            {
+                AudioSource sonidoMuerte = GameObject.Find("Muerte").GetComponent<AudioSource>();
+                GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
+                psMuerte.Play();
+                //            sonidoMuerte.volume = GlobalControl.Instance.musicVolume;
+                sonidoMuerte.Play();
+                psMuerte.Play();
+                transform.position = posJugador;
             }
         }
 
-        if (jefeTocado == true)
+        if (hack == true)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
-        }
-        else
-        {
+            psSalto.Stop();
+            //fLife = life;
+            //lifeImg.fillAmount = fLife / maxLife;
+
+            if (plataformaIgnorada != null)
+            {
+                if (transform.position.y - (GetComponent<CapsuleCollider2D>().bounds.size.y / 3) > plataformaIgnorada.transform.position.y)
+                {
+                    Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), false);
+                }
+            }
+ 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 rb.velocity = new Vector2(-vel, rb.velocity.y);
@@ -98,52 +201,67 @@ public class player : MonoBehaviour {
 
                 }
             }
+            else if (jefeTocado == true)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+            }
             else
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
-        }
-        
 
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            //cc.enabled = false;
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), true);
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            if (grouded) {
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                grouded = false;
-                psSalto.Play();
-                GetComponent<AudioSource>().Play();
-                GetComponent<Animator>().SetBool("salto", true);
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                GetComponent<CapsuleCollider2D>().enabled = false;
+                //Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), plataformaIgnorada.GetComponent<Collider2D>(), true);
             }
-            else if (jump2 == true && doublejump == true) {
-                GetComponent<Animator>().Play("salto", -1, 0);
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                jump2 = false;
+            else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                GetComponent<CapsuleCollider2D>().enabled = true;
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.RightControl) && shot == true) {
 
-            instantiatedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0), gameObject.transform);
-            if (gameObject.GetComponent<SpriteRenderer>().flipX == true) {
-                instantiatedProjectile.GetComponent<proyectil_jugador>().vel *= (-2);
-            }               
-            
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (grouded)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    grouded = false;
+                    psSalto.Play();
+                    GetComponent<AudioSource>().Play();
+                    GetComponent<Animator>().SetBool("salto", true);
+                }
+                else
+                {
+                    GetComponent<Animator>().Play("salto", -1, 0);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                    jump2 = false;
+                }
+            }
 
-        if (rb.position.y < (posicionAbismo)) {
-            AudioSource sonidoMuerte = GameObject.Find("Muerte").GetComponent<AudioSource>();
-            GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
-            psMuerte.Play();
-//            sonidoMuerte.volume = GlobalControl.Instance.musicVolume;
-            sonidoMuerte.Play();
-            psMuerte.Play();
-            transform.position = posJugador;
-        }
+            if (Input.GetKeyDown(KeyCode.RightControl) && shot == true)
+            {
+
+                instantiatedProjectile = Instantiate(projectile, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0), gameObject.transform);
+                if (gameObject.GetComponent<SpriteRenderer>().flipX == true)
+                {
+                    instantiatedProjectile.GetComponent<proyectil_jugador>().vel *= (-2);
+                }
+
+            }
+
+            if (rb.position.y < (posicionAbismo))
+            {
+                AudioSource sonidoMuerte = GameObject.Find("Muerte").GetComponent<AudioSource>();
+                GameObject.Find("psMuerte").GetComponent<Transform>().position = gameObject.GetComponent<Transform>().position;
+                psMuerte.Play();
+                //            sonidoMuerte.volume = GlobalControl.Instance.musicVolume;
+                sonidoMuerte.Play();
+                psMuerte.Play();
+                transform.position = posJugador;
+            }
+        }    
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
